@@ -1,0 +1,33 @@
+---
+const { before = "/assets/images/implant-before.jpg", after = "/assets/images/implant-after.jpg" } = Astro.props;
+---
+<div class="comparison" data-comparison>
+  <img src={before} alt="Before dental treatment" loading="eager" />
+  <div class="comparison__after" data-after>
+    <img src={after} alt="After dental treatment" loading="eager" />
+  </div>
+  <input data-slider class="comparison__range" aria-label="Compare before and after dental treatment" type="range" min="0" max="100" value="50" />
+  <span class="comparison__label comparison__label--before">Before</span>
+  <span class="comparison__label comparison__label--after">After</span>
+</div>
+
+<script>
+  document.querySelectorAll('[data-comparison]').forEach((container) => {
+    const slider = container.querySelector('[data-slider]');
+    const after = container.querySelector('[data-after]');
+    if (!(slider instanceof HTMLInputElement) || !(after instanceof HTMLElement)) return;
+    const update = () => after.style.clipPath = `inset(0 0 0 ${slider.value}%)`;
+    slider.addEventListener('input', update); update();
+  });
+</script>
+
+<style>
+  .comparison { position: relative; aspect-ratio: 16 / 10; overflow: hidden; border: 1px solid rgba(255,255,255,.58); background: #163f55; }
+  .comparison > img, .comparison__after, .comparison__after img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .comparison__after { clip-path: inset(0 0 0 50%); }
+  .comparison__range { position: absolute; inset: 0; z-index: 4; width: 100%; height: 100%; margin: 0; cursor: ew-resize; opacity: 0; }
+  .comparison::after { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: var(--rose); content: ""; pointer-events: none; }
+  .comparison__label { position: absolute; z-index: 3; top: 1rem; padding: .42rem .65rem; background: var(--ink); color: var(--white); font-size: .66rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+  .comparison__label--before { left: 1rem; }
+  .comparison__label--after { right: 1rem; background: var(--white); color: var(--ink); }
+</style>

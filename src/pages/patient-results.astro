@@ -1,0 +1,9 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import BeforeAfter from "@/components/BeforeAfter.astro";
+---
+<BaseLayout title="Patient Results | My Ashburn Dentist" description="See dental treatment results from My Ashburn Dentist.">
+  <section class="results-hero"><div class="shell"><p class="eyebrow">Patient results</p><h1 class="display">A closer look at <em>real progress.</em></h1><p class="prose">Every smile and treatment plan is individual. These images illustrate the kind of thoughtful restorative work patients can discuss with our team.</p></div></section>
+  <section class="section"><div class="shell grid grid--two result"><div><p class="eyebrow">Featured implant case</p><h2 class="section-title">Restoring a confident smile.</h2><p class="prose">A consultation is the right starting point for understanding whether an implant, crown, or another path may support your goals.</p><a class="button" href="/appointment-request?interest=Dental%20Implants">Request an appointment</a></div><BeforeAfter /></div></section>
+</BaseLayout>
+<style>.results-hero { background: var(--ink); color: var(--white); padding: 5rem 0; }.results-hero .eyebrow { color: var(--copper-light); }.results-hero .prose { color: rgba(255,255,255,.82); margin-top: 1.75rem; }.result { align-items: center; }.result .button { margin-top: 1rem; }</style>

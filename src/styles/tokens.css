@@ -1,0 +1,24 @@
+:root {
+  --ink: #062b43;
+  --ink-soft: #24485a;
+  --rose: #facfc9;
+  --rose-soft: #fff3f1;
+  --copper: #c58c68;
+  --copper-light: #e8bc9f;
+  --mint: #78a597;
+  --mist: #e8f0eb;
+  --paper: #f8f6f3;
+  --line: rgba(6, 43, 67, 0.18);
+  --white: #ffffff;
+  --font-display: "Tiempos Local", Georgia, serif;
+  --font-body: "DM Sans Local", Arial, sans-serif;
+  --space-1: 0.5rem;
+  --space-2: 0.75rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2rem;
+  --space-6: 3rem;
+  --space-7: 4.5rem;
+  --radius: 2px;
+  --content: 76rem;
+}

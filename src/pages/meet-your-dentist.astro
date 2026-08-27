@@ -1,0 +1,7 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+<BaseLayout title="Meet Dr. Rusznak | My Ashburn Dentist" description="Meet Dr. Zoltan Rusznak of My Ashburn Dentist.">
+  <section class="meet"><div class="shell meet__grid"><img src="/assets/images/dr-zoltan-rusznak.webp" alt="Dr. Zoltan Rusznak" /><div><p class="eyebrow">Meet your dentist</p><h1 class="display">Dr. Zoltan <em>Rusznak</em></h1><p class="prose">Dr. Rusznak brings more than three decades of dental experience to every treatment conversation. His approach starts with listening, a thoughtful exam, and clear explanations of your options.</p><p class="prose">Whether you are considering an implant, restoring a damaged tooth, or seeking a second opinion, our team is here to help you move forward confidently.</p><a class="button" href="/appointment-request">Request an appointment</a></div></div></section>
+</BaseLayout>
+<style>.meet { background: var(--paper); padding: 5rem 0; }.meet__grid { display: grid; gap: 3rem; align-items: center; }.meet img { aspect-ratio: 4/5; width: 100%; object-fit: cover; }.meet .prose { margin: 1.25rem 0; }.meet .button { margin-top: 1rem; }@media(min-width:56rem){.meet__grid{grid-template-columns:.78fr 1fr;}}</style>

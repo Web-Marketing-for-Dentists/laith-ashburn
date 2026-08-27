@@ -1,0 +1,56 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import BeforeAfter from "@/components/BeforeAfter.astro";
+import ProcedureCard from "@/components/ProcedureCard.astro";
+---
+<BaseLayout>
+  <section class="hero">
+    <video class="hero__video" autoplay muted loop playsinline poster="/assets/images/clinic-fallback.jpg"><source src="/assets/video/practice-tour.mp4" type="video/mp4" /></video>
+    <div class="hero__veil"></div>
+    <div class="shell hero__grid">
+      <div>
+        <h1 class="display">Know Your Options <em>for Dental Implants</em></h1>
+        <p class="hero__copy">Come schedule a consultation with Dr. Rusznak. Explore treatment plans built around your smile, comfort, and goals. Our second opinion could save you money.</p>
+        <a class="button" href="/appointment-request?interest=Dental%20Implants">Request an appointment <span aria-hidden="true">↗</span></a>
+        <p class="hero__offer"><strong>Free</strong> Exam, X-Ray, and Consultation ($199 Value). Hurry! The offer ends soon.</p>
+      </div>
+      <div class="hero__comparison"><p class="eyebrow">Implant patient of Dr. Rusznak</p><BeforeAfter /></div>
+    </div>
+  </section>
+  <section class="section section--paper">
+    <div class="shell implant-grid">
+      <figure><img src="/assets/images/single-implant.webp" alt="Single dental implant illustration" loading="lazy" /></figure>
+      <div>
+        <p class="eyebrow">Single dental implant</p><h2 class="section-title">$2,999 <em>per tooth</em></h2>
+        <p class="prose">Includes implant, abutment, and crown. Ask about 0% financing for up to 24 months.</p>
+        <a class="button" href="/appointment-request?interest=Dental%20Implants">Request an appointment</a>
+      </div>
+    </div>
+  </section>
+  <section class="section section--rose">
+    <div class="shell grid grid--two doctor">
+      <img src="/assets/images/dr-zoltan-rusznak.webp" alt="Dr. Zoltan Rusznak" loading="lazy" />
+      <div><p class="eyebrow">Meet your dentist</p><h2 class="section-title">Dr. Zoltan Rusznak</h2><p class="prose">With more than 30 years of experience and 1,000+ implants placed, Dr. Rusznak helps patients understand the path that fits their goals and comfort.</p><a class="button button--outline" href="/meet-your-dentist">Meet Dr. Rusznak</a></div>
+    </div>
+  </section>
+  <section class="section section--paper"><div class="shell"><p class="eyebrow">More ways to care for your smile</p><h2 class="section-title">General dentistry</h2><div class="grid grid--three cards"><ProcedureCard name="Dental Crowns" price="$799" description="Restore strength and function with a crown made for your smile." href="/general/dental-crowns" image="/assets/images/dental-crowns.jpg" /><ProcedureCard name="Wisdom Tooth Extractions" price="$299" description="Straightforward guidance for wisdom teeth that need care." href="/general/wisdom-tooth-extractions" image="/assets/images/wisdom-tooth.jpg" /><ProcedureCard name="Root Canal Treatment" price="$699" description="Focused treatment to relieve pain and preserve your natural tooth." href="/root-canal" image="/assets/images/general-care.jpg" /></div></div></section>
+  <section class="section section--ink"><div class="shell consult"><div><p class="eyebrow">Ready when you are</p><h2 class="section-title">Let’s talk about your options.</h2></div><a class="button" href="/appointment-request">Request an appointment</a></div></section>
+</BaseLayout>
+
+<style>
+  .hero { position: relative; isolate: isolate; overflow: hidden; min-height: 48rem; background: var(--ink); color: var(--white); }
+  .hero__video, .hero__veil { position: absolute; inset: 0; z-index: -2; height: 100%; width: 100%; object-fit: cover; }
+  .hero__veil { z-index: -1; background: linear-gradient(90deg, rgba(3,28,45,.91) 0%, rgba(3,28,45,.68) 52%, rgba(3,28,45,.34) 100%); }
+  .hero__grid { display: grid; align-items: center; gap: 3rem; min-height: 48rem; padding-block: 5rem; }
+  .hero__copy { max-width: 39rem; border-left: 1px solid var(--copper-light); color: rgba(255,255,255,.88); font-size: 1.1rem; line-height: 1.7; margin: 2.25rem 0; padding-left: 1.25rem; }
+  .hero__offer { border-left: 2px solid var(--copper); font-size: .9rem; line-height: 1.55; margin-top: 1.5rem; max-width: 33rem; padding: 1rem 1.15rem; background: rgba(3,28,45,.54); }
+  .hero__comparison { width: min(100%, 40rem); justify-self: end; }
+  .hero__comparison .eyebrow { margin-bottom: .75rem; color: var(--copper-light); }
+  .section { padding: 5rem 0; }
+  .section--paper { background: var(--paper); }.section--rose { background: var(--rose); }.section--ink { background: var(--ink); color: var(--white); }
+  .implant-grid { display: grid; align-items: center; gap: 3rem; }.implant-grid figure { margin: 0; border: 1px solid var(--line); }.implant-grid img { aspect-ratio: 4/3; object-fit: cover; width: 100%; }.implant-grid .section-title { margin-top: .75rem; }.implant-grid .section-title em { color: var(--copper); font-style: normal; font-size: .42em; letter-spacing: 0; }
+  .doctor { align-items: center; }.doctor img { aspect-ratio: 4/5; width: 100%; object-fit: cover; }.doctor .button { margin-top: 1rem; }
+  .cards { margin-top: 2rem; }.consult { display: flex; align-items: end; justify-content: space-between; gap: 1.5rem; }.consult .eyebrow { color: var(--copper-light); }.consult .section-title { max-width: 38rem; }
+  @media (min-width: 60rem) { .hero__grid { grid-template-columns: 1fr .9fr; }.implant-grid { grid-template-columns: 1fr .85fr; } }
+  @media (max-width: 42rem) { .hero { min-height: auto; }.hero__grid { min-height: auto; padding-block: 4rem; }.consult { align-items: start; flex-direction: column; } }
+</style>

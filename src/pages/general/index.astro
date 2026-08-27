@@ -1,0 +1,11 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ProcedureCard from "@/components/ProcedureCard.astro";
+import { procedures } from "@/utils/site";
+---
+<BaseLayout title="General Dentistry | My Ashburn Dentist" description="General dentistry treatment options in Ashburn, Virginia.">
+  <section class="page-hero"><div class="shell"><p class="eyebrow">General dentistry</p><h1 class="display">Care built around <em>your next step.</em></h1><p class="prose">Explore clear treatment options for restoring, protecting, and maintaining your smile.</p></div></section>
+  <section class="section"><div class="shell"><div class="grid grid--three">{procedures.filter((item) => item.slug !== "dental-implants" && item.slug !== "root-canal-treatment").map((item, index) => <ProcedureCard name={item.name} price={item.price} description={item.description} href={`/general/${item.slug}`} image={index === 0 ? "/assets/images/dental-crowns.jpg" : index === 1 ? "/assets/images/wisdom-tooth.jpg" : "/assets/images/general-care.jpg"} />)}</div></div></section>
+</BaseLayout>
+
+<style>.page-hero { background: var(--ink); color: var(--white); padding: 6rem 0; }.page-hero .eyebrow { color: var(--copper-light); }.page-hero .prose { color: rgba(255,255,255,.8); margin-top: 2rem; }</style>

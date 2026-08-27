@@ -1,0 +1,34 @@
+---
+import { site } from "@/utils/site";
+---
+<footer class="footer">
+  <div class="shell footer__grid">
+    <section>
+      <img class="footer__logo" src="/assets/images/logo.svg" alt={site.name} width="220" height="56" />
+      <p>Clear information, real treatment options, and a conversation about the next step for your smile.</p>
+    </section>
+    <section>
+      <p class="eyebrow">Visit</p>
+      <p>{site.address}</p>
+      <a data-phone-link href={site.phoneHref}><span data-phone-display>{site.phoneDisplay}</span></a>
+    </section>
+    <section>
+      <p class="eyebrow">Explore</p>
+      <a href="/appointment-request">Request an appointment</a>
+      <a href="/disclaimer">Disclaimer</a>
+      <a href="/privacy-policy">Privacy policy</a>
+    </section>
+  </div>
+  <div class="shell footer__bottom">© {new Date().getFullYear()} {site.name}. All rights reserved.</div>
+</footer>
+
+<style>
+  .footer { background: #031f2f; color: rgba(255,255,255,.78); padding: 3.5rem 0 1.25rem; }
+  .footer__grid { display: grid; gap: 2.5rem; }
+  .footer__logo { width: 13rem; height: auto; }
+  .footer p { max-width: 24rem; }
+  .footer a { display: block; margin-top: .55rem; color: var(--white); text-decoration: none; }
+  .footer a:hover { color: var(--copper-light); }
+  .footer__bottom { margin-top: 2.5rem; border-top: 1px solid rgba(255,255,255,.14); padding-top: 1.25rem; font-size: .78rem; }
+  @media (min-width: 46rem) { .footer__grid { grid-template-columns: 1.3fr 1fr .8fr; } }
+</style>

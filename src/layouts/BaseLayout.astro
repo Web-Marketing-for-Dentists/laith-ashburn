@@ -1,0 +1,76 @@
+---
+import "@/styles/global.css";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import { site } from "@/utils/site";
+
+interface Props { title?: string; description?: string; noIndex?: boolean; }
+const { title = site.title, description = site.description, noIndex = false } = Astro.props;
+const ga4 = import.meta.env.PUBLIC_GA4_MEASUREMENT_ID ?? "G-G02B9W4PGM";
+const whatConvertsAccount = import.meta.env.PUBLIC_WHATCONVERTS_ACCOUNT ?? "129138";
+const whatConvertsSrc = `https://s.ksrndkehqnwntyxlhgto.com/${whatConvertsAccount}.js`;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#062b43" />
+    <meta name="description" content={description} />
+    {noIndex && <meta name="robots" content="noindex,nofollow" />}
+    <link rel="icon" href="/assets/images/logo.svg" type="image/svg+xml" />
+    <link rel="preload" href="/assets/fonts/Tiempos-Headline-Semibold.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/DM-Sans-Regular.ttf" as="font" type="font/ttf" crossorigin />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={`${site.url}/assets/images/clinic-fallback.jpg`} />
+    <link rel="canonical" href={new URL(Astro.url.pathname, site.url)} />
+    <title>{title}</title>
+    <script is:inline>
+      window.$wc_load = window.$wc_load || ((value) => JSON.parse(JSON.stringify(value)));
+      window.$wc_leads = window.$wc_leads || { doc: { url: window.$wc_load(document.URL), ref: window.$wc_load(document.referrer), search: window.$wc_load(location.search), hash: window.$wc_load(location.hash) } };
+    </script>
+    <script is:inline src={whatConvertsSrc}></script>
+    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${ga4}`}></script>
+    <script is:inline define:vars={{ ga4 }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ window.dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', ga4);
+    </script>
+    <script is:inline>
+      (() => {
+        const canonical = "5712485413";
+        const storageKey = "whatconverts-active-phone";
+        const digits = (value) => { const valueDigits = String(value || "").replace(/\D/g, ""); return valueDigits.length === 11 && valueDigits.startsWith("1") ? valueDigits.slice(1) : valueDigits; };
+        const format = (value) => /^[2-9]\d{2}[2-9]\d{2}\d{4}$/.test(value) ? `(${value.slice(0,3)}) ${value.slice(3,6)}-${value.slice(6)}` : null;
+        const readPhone = (value) => { const match = String(value || "").match(/(?:\+?1[\s.-]?)?\(?[2-9]\d{2}\)?[\s.-]*[2-9]\d{2}[\s.-]*\d{4}/); return match ? format(digits(match[0])) : null; };
+        const active = () => {
+          for (const link of document.querySelectorAll('a[href^="tel:"]')) { const value = readPhone(link.textContent); if (value && digits(value) !== canonical) { try { sessionStorage.setItem(storageKey, value); } catch {} return value; } }
+          try { return format(digits(sessionStorage.getItem(storageKey) || "")) || "(571) 248-5413"; } catch { return "(571) 248-5413"; }
+        };
+        const sync = () => {
+          const value = active(); const activeDigits = digits(value);
+          document.querySelectorAll('[data-phone-link], [data-phone-sync]').forEach((node) => {
+            if (node.tagName === 'A') node.setAttribute('href', `tel:+1${activeDigits}`);
+            node.querySelectorAll?.('[data-phone-display]').forEach((display) => { display.textContent = value; });
+            if (node.matches?.('[data-phone-display]')) node.textContent = value;
+          });
+        };
+        document.addEventListener('DOMContentLoaded', () => {
+          const observer = new MutationObserver(() => requestAnimationFrame(sync));
+          observer.observe(document.body, { childList: true, subtree: true, characterData: true });
+          sync(); [250, 1000, 3000, 7000].forEach((delay) => setTimeout(sync, delay));
+        });
+      })();
+    </script>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify({ "@context": "https://schema.org", "@type": "Dentist", name: site.name, telephone: site.phoneDisplay, address: { "@type": "PostalAddress", streetAddress: "20925 Professional Plaza, Suite 330", addressLocality: "Ashburn", addressRegion: "VA", postalCode: "20147", addressCountry: "US" } })}></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Header />
+    <main id="main"><slot /></main>
+    <Footer />
+  </body>
+</html>

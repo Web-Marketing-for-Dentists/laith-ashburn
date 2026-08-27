@@ -1,0 +1,13 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { procedures } from "@/utils/site";
+const procedure = procedures.find((item) => item.slug === Astro.params.slug);
+if (!procedure) return Astro.redirect("/general");
+const image = procedure.slug === "dental-crowns" ? "/assets/images/dental-crowns.jpg" : procedure.slug === "wisdom-tooth-extractions" ? "/assets/images/wisdom-tooth.jpg" : "/assets/images/general-care.jpg";
+---
+<BaseLayout title={`${procedure.name} | My Ashburn Dentist`} description={procedure.description}>
+  <section class="treatment-hero"><div class="shell treatment-hero__grid"><div><a class="back" href="/general">← Back to General services</a><p class="eyebrow">{procedure.name}</p><h1 class="display">{procedure.name} <em>{procedure.price && `from ${procedure.price}`}</em></h1><p class="prose">{procedure.description} Start with an exam, your goals, and a direct conversation about what treatment may help.</p><a class="button" href={`/appointment-request?interest=${encodeURIComponent(procedure.name)}`}>Request an appointment</a></div><img src={image} alt="" /></div></section>
+  <section class="section"><div class="shell grid grid--three"><article class="card"><p class="eyebrow">01</p><h2>Understand the concern</h2><p>We listen to what you are experiencing and evaluate the tooth, gum, or bite involved.</p></article><article class="card"><p class="eyebrow">02</p><h2>See your options</h2><p>You receive a clear explanation of practical treatment paths, timing, and expected care.</p></article><article class="card"><p class="eyebrow">03</p><h2>Move forward comfortably</h2><p>Our team helps you choose a plan built around your comfort, needs, and goals.</p></article></div></section>
+</BaseLayout>
+
+<style>.treatment-hero { background: var(--ink); color: var(--white); padding: 4rem 0 5rem; }.treatment-hero__grid { display: grid; align-items: center; gap: 3rem; }.treatment-hero img { aspect-ratio: 4/5; width: 100%; object-fit: cover; }.treatment-hero .eyebrow { color: var(--copper-light); margin-top: 3rem; }.treatment-hero .prose { color: rgba(255,255,255,.8); margin: 1.75rem 0; }.back { color: rgba(255,255,255,.7); font-size: .75rem; font-weight: 800; letter-spacing: .11em; text-decoration: none; text-transform: uppercase; }h2 { font-family: var(--font-display); font-size: 2rem; line-height: 1; margin: 1rem 0; }.card p:last-child { color: var(--ink-soft); }@media(min-width: 56rem){.treatment-hero__grid { grid-template-columns: 1fr .75fr; }}</style>

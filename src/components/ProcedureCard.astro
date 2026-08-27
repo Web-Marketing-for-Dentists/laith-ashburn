@@ -1,0 +1,22 @@
+---
+interface Props { name: string; price?: string; description: string; href: string; image?: string; }
+const { name, price, description, href, image } = Astro.props;
+---
+<article class="procedure-card">
+  {image && <img src={image} alt="" loading="lazy" />}
+  <div class="procedure-card__body">
+    <p class="eyebrow">{price ? `From ${price}` : "Personalized care"}</p>
+    <h3>{name}</h3>
+    <p>{description}</p>
+    <a href={href}>Explore {name} <span aria-hidden="true">↗</span></a>
+  </div>
+</article>
+
+<style>
+  .procedure-card { display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--line); background: var(--white); }
+  .procedure-card img { aspect-ratio: 16 / 9; width: 100%; object-fit: cover; }
+  .procedure-card__body { display: grid; flex: 1; align-content: start; gap: 1rem; padding: 1.5rem; }
+  h3 { margin: 0; font-family: var(--font-display); font-size: 2rem; line-height: 1; }
+  p { margin: 0; color: var(--ink-soft); }
+  a { margin-top: .25rem; color: var(--ink); font-size: .76rem; font-weight: 800; letter-spacing: .1em; text-decoration: none; text-transform: uppercase; }
+</style>

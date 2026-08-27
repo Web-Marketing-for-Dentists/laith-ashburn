@@ -1,0 +1,8 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+<BaseLayout title="Root Canal Treatment | My Ashburn Dentist" description="Root canal treatment from $699 in Ashburn, Virginia.">
+  <section class="root"><div class="shell root__grid"><div><p class="eyebrow">Root canal treatment</p><h1 class="display">Relief and a plan to <em>save your tooth.</em></h1><p class="prose">When a tooth is painful, inflamed, or infected, root canal treatment may be the most conservative way to protect it.</p><p class="root__price">From <strong>$699</strong></p><a class="button" href="/appointment-request?interest=Root%20Canal%20Treatment">Request an appointment</a></div><img src="/assets/images/general-care.jpg" alt="Calm dental treatment room" /></div></section>
+  <section class="section"><div class="shell grid grid--two"><div><p class="eyebrow">Common signs</p><h2 class="section-title">Don’t ignore persistent discomfort.</h2></div><div class="prose"><p>Sensitivity to temperature, chewing pain, swelling, or a tooth that darkens can be signs that deserve a prompt clinical evaluation.</p><p>We explain what we see, answer questions, and help you understand your options before treatment begins.</p></div></div></section>
+</BaseLayout>
+<style>.root { background: var(--ink); color: var(--white); padding: 5rem 0; }.root__grid { display: grid; align-items: center; gap: 3rem; }.root img { aspect-ratio: 4/5; width: 100%; object-fit: cover; }.root .eyebrow { color: var(--copper-light); }.root .prose { color: rgba(255,255,255,.82); margin: 2rem 0; }.root__price { font-family: var(--font-display); font-size: 2rem; }.root__price strong { color: var(--rose); font-size: 3.5rem; } @media(min-width:56rem){.root__grid{grid-template-columns:1fr .75fr;}}</style>

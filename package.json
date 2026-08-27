@@ -1,0 +1,23 @@
+{
+  "name": "my-ashburn-dentist-cloudflare",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^12.4.1",
+    "astro": "^5.12.9"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "typescript": "^5.7.3"
+  },
+  "engines": {
+    "node": ">=18.17.1"
+  }
+}

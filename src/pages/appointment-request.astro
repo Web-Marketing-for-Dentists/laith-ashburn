@@ -1,0 +1,8 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import AppointmentForm from "@/components/AppointmentForm.astro";
+---
+<BaseLayout title="Request an Appointment | My Ashburn Dentist" description="Request an appointment with My Ashburn Dentist in Ashburn, Virginia." noIndex={true}>
+  <section class="appointment"><div class="shell appointment__grid"><div><a class="back" href="/">← Back to My Ashburn Dentist</a><p class="eyebrow">Appointment request</p><h1 class="display">Tell us what <em>you need.</em></h1><p class="prose">Share a few details and we will follow up to discuss timing, comfort, questions, and the right next step for your care.</p><p class="appointment__note"><strong>One request.</strong> One shared form ID. One coordinated follow-up path for every treatment page.</p></div><div class="appointment__card"><AppointmentForm /></div></div></section>
+</BaseLayout>
+<style>.appointment { background: var(--rose); padding: 5rem 0; min-height: calc(100vh - 5rem); }.appointment__grid { display: grid; gap: 3rem; align-items: start; }.back { color: var(--ink-soft); font-size: .75rem; font-weight: 800; letter-spacing: .11em; text-decoration: none; text-transform: uppercase; }.appointment .eyebrow { margin-top: 3rem; }.appointment .prose { margin-top: 2rem; }.appointment__note { border-block: 1px solid var(--line); margin-top: 2.5rem; max-width: 30rem; padding: 1.25rem 0; }.appointment__card { background: var(--white); box-shadow: 0 1.5rem 3rem rgba(6,43,67,.12); padding: 2.25rem; }@media(min-width:58rem){.appointment__grid{grid-template-columns:.85fr 1.15fr;}.appointment__card{margin-top:2rem;}}</style>

@@ -1,0 +1,32 @@
+---
+import { site } from "@/utils/site";
+const currentPath = Astro.url.pathname;
+---
+<header class="header">
+  <div class="shell header__inner">
+    <a class="header__brand" href="/" aria-label={`${site.name} home`}>
+      <img src="/assets/images/logo.svg" alt={site.name} width="220" height="56" />
+    </a>
+    <nav class="header__nav" aria-label="Primary navigation">
+      <a class:list={{ active: currentPath === "/" }} href="/">Dental Implants</a>
+      <a class:list={{ active: currentPath.startsWith("/general") }} href="/general">General</a>
+      <a href="/root-canal">Root Canal</a>
+      <a href="/meet-your-dentist">Dr. Rusznak</a>
+      <a href="/patient-results">Patient Results</a>
+    </nav>
+    <a class="button button--outline button--nav" data-phone-link href={site.phoneHref} aria-label={`Call ${site.name} at ${site.phoneDisplay}`}>
+      <span aria-hidden="true">☎</span><span class="header__call-label">Call Us: </span><span data-phone-display>{site.phoneDisplay}</span>
+    </a>
+  </div>
+</header>
+
+<style>
+  .header { background: var(--ink); border-bottom: 1px solid rgba(255,255,255,.18); color: var(--white); }
+  .header__inner { display: flex; min-height: 5rem; align-items: center; justify-content: space-between; gap: 1rem; }
+  .header__brand img { width: min(13rem, 42vw); height: auto; }
+  .header__nav { display: none; align-items: center; gap: 1.1rem; font-size: .68rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+  .header__nav a { color: rgba(255,255,255,.74); text-decoration: none; }
+  .header__nav a:hover, .header__nav a.active { color: var(--copper-light); }
+  .header__call-label { display: none; }
+  @media (min-width: 62rem) { .header__nav { display: flex; } .header__call-label { display: inline; } }
+</style>
