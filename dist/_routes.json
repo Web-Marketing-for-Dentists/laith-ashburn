@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "include": [
+    "/*"
+  ],
+  "exclude": [
+    "/_astro/*",
+    "/.DS_Store",
+    "/robots.txt",
+    "/sitemap.xml",
+    "/assets/*"
+  ]
+}

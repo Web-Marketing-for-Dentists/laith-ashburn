@@ -3,7 +3,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { procedures } from "@/utils/site";
 const procedure = procedures.find((item) => item.slug === Astro.params.slug);
 if (!procedure) return Astro.redirect("/general");
-const image = procedure.slug === "dental-crowns" ? "/assets/images/dental-crowns.jpg" : procedure.slug === "wisdom-tooth-extractions" ? "/assets/images/wisdom-tooth.jpg" : "/assets/images/general-care.jpg";
+const image = procedure.slug === "dental-crowns" ? "/assets/images/dental-crowns.webp" : procedure.slug === "wisdom-tooth-extractions" ? "/assets/images/wisdom-tooth.webp" : procedure.slug === "root-canal-treatment" ? "/assets/images/root-canal.webp" : "/assets/images/general-care.jpg";
 ---
 <BaseLayout title={`${procedure.name} | My Ashburn Dentist`} description={procedure.description}>
   <section class="treatment-hero"><div class="shell treatment-hero__grid"><div><a class="back" href="/general">← Back to General services</a><p class="eyebrow">{procedure.name}</p><h1 class="display">{procedure.name} <em>{procedure.price && `from ${procedure.price}`}</em></h1><p class="prose">{procedure.description} Start with an exam, your goals, and a direct conversation about what treatment may help.</p><a class="button" href={`/appointment-request?interest=${encodeURIComponent(procedure.name)}`}>Request an appointment</a></div><img src={image} alt="" /></div></section>
