@@ -41,7 +41,12 @@ const procedure = resolveProcedure(Astro.url.searchParams.get("interest"));
     const button = form.querySelector('button'); if (button) { button.disabled = true; button.textContent = 'Sending request…'; }
     try {
       const response = await fetch('/api/appointment-request', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(values) });
-      if (!response.ok) throw new Error('Request failed');
+      if (!response.ok) {
+        // Keep the message to the patient friendly, but make the real cause visible in the console.
+        const body = await response.json().catch(() => ({}));
+        console.error('[book-consultation] submission failed —', response.status, body.error || '', body.detail || '');
+        throw new Error('Request failed');
+      }
       const activeDisplay = document.querySelector('[data-phone-display]')?.textContent?.trim() || fallbackPhone;
       const activeHref = document.querySelector('[data-phone-link]')?.getAttribute('href') || fallbackHref;
       form.outerHTML = `<section class="appointment-success" role="status"><p class="eyebrow">Request received</p><h2>Thank you for reaching out.</h2><p>We sent a confirmation to your email and shared your request with the My Ashburn Dentist team. A team member will contact you shortly.</p><a data-phone-sync href="${activeHref}">Call us now: <span data-phone-display>${activeDisplay}</span></a></section>`;
