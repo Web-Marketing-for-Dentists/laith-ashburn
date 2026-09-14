@@ -15,7 +15,6 @@ const procedure = resolveProcedure(Astro.url.searchParams.get("interest"));
   <input type="hidden" name="Page URL" value={Astro.url.href} />
   <p class="appointment-form__error" data-error role="alert" hidden></p>
   <button class="button" type="submit">Request an appointment</button>
-  <p class="appointment-form__id">Form ID: <strong>book-consultation</strong></p>
 </form>
 
 <script is:inline define:vars={{ fallbackPhone: site.phoneDisplay, fallbackHref: site.phoneHref }}>
@@ -69,7 +68,6 @@ const procedure = resolveProcedure(Astro.url.searchParams.get("interest"));
   .checkbox { grid-template-columns: auto 1fr; align-items: start; color: var(--ink-soft); font-size: .95rem; font-weight: 400; letter-spacing: normal; line-height: 1.5; text-transform: none; }
   .checkbox input { width: 1rem; height: 1rem; margin-top: .22rem; }
   .appointment-form__error { margin: 0; border-left: 3px solid #9b3f49; color: #9b3f49; padding-left: .75rem; }
-  .appointment-form__id { margin: 0; color: #5e6e76; font-size: .8rem; }
   .appointment-success { border: 1px solid var(--line); background: var(--rose); padding: 2.5rem; }
   .appointment-success h2 { margin: 1rem 0; font-family: var(--font-display); font-size: 3rem; line-height: .95; }
   .appointment-success a { display: inline-block; margin-top: 1.5rem; border-bottom: 1px solid var(--ink); color: var(--ink); font-size: .75rem; font-weight: 800; letter-spacing: .12em; padding-bottom: .25rem; text-decoration: none; text-transform: uppercase; }
