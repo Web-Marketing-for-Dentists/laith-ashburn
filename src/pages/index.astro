@@ -2,27 +2,44 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import BeforeAfter from "@/components/BeforeAfter.astro";
 import ProcedureCard from "@/components/ProcedureCard.astro";
+
+const tiers = [
+  { label: "Single Dental Implant", price: "$2,999", unit: "per tooth", copy: "Replaces one missing tooth. Includes implant, abutment, and crown.", image: "/assets/images/single-implant.webp", alt: "Illustration of a single dental implant with its abutment and crown", width: 655, height: 438, fade: true },
+  { label: "Snap-On Denture", price: "$5,997", unit: "per arch", copy: "A removable denture that snaps onto dental implants for a secure, stable fit.", image: "/assets/images/snap-on-denture.webp", alt: "Illustration of a lower denture lifted above two dental implants", width: 500, height: 500 },
+  { label: "All-on-4", price: "$14,997", unit: "per arch", copy: "A full arch of fixed, non-removable teeth supported by four dental implants.", image: "/assets/images/all-on-4.webp", alt: "Illustration of a full arch of teeth seated on four dental implants", width: 306, height: 261 },
+];
 ---
 <BaseLayout>
   <section class="hero">
-    <video class="hero__video" autoplay muted loop playsinline poster="/assets/images/clinic-fallback.jpg"><source src="/assets/video/practice-tour.mp4" type="video/mp4" /></video>
+    <img class="hero__media" src="/assets/images/office.jpg" alt="" width="1920" height="1028" fetchpriority="high" />
     <div class="hero__veil"></div>
     <div class="shell hero__grid">
       <div>
-        <h1 class="display">Know Your Options <em>for Dental Implants</em></h1>
-        <p class="hero__copy">Come schedule a consultation with Dr. Rusznak. Explore treatment plans built around your smile, comfort, and goals. Our second opinion could save you money.</p>
+        <p class="hero__kicker">Dental Implants Just <strong>$2,999</strong> Per Tooth!</p>
+        <h1 class="display">Local Dentist&nbsp;– <em>Dental Implant Expert</em></h1>
+        <p class="hero__copy">My Ashburn Dentist&nbsp;– located at Ashburn Farm &amp; Claiborne Pkwys&nbsp;– offers a comfortable dental experience to receive expert care in tooth replacement. With single dental implants just $2,999, schedule a FREE consultation to discover if we could save you money!</p>
         <a class="button" href="/appointment-request?interest=Dental%20Implants">Request an appointment <span aria-hidden="true">↗</span></a>
         <p class="hero__offer"><strong>Free</strong> Exam, X-Ray, and Consultation ($199 Value). Hurry! The offer ends soon.</p>
       </div>
       <div class="hero__comparison"><p class="eyebrow">Implant patient of Dr. Rusznak</p><BeforeAfter /></div>
     </div>
   </section>
-  <section class="section section--paper">
-    <div class="shell implant-grid">
-      <figure><img src="/assets/images/single-implant.webp" alt="Single dental implant illustration" loading="lazy" /></figure>
-      <div>
-        <p class="eyebrow">Single dental implant</p><h2 class="section-title">$2,999 <em>per tooth</em></h2>
-        <p class="prose">Includes implant, abutment, and crown. Ask about 0% financing for up to 24 months.</p>
+  <section class="section section--paper" id="pricing">
+    <div class="shell">
+      <p class="eyebrow">Dental implant pricing</p><h2 class="section-title pricing__title">Three ways to replace missing teeth</h2>
+      <div class="pricing__grid">
+        {tiers.map((tier) => (
+          <article class="price-card">
+            <img class={tier.fade ? "price-card__fade" : undefined} src={tier.image} alt={tier.alt} width={tier.width} height={tier.height} loading="lazy" decoding="async" />
+            <h3 class="price-card__label">{tier.label}</h3>
+            <p class="price-card__price">{tier.price}</p>
+            <p class="price-card__unit">{tier.unit}</p>
+            <p class="price-card__copy">{tier.copy}</p>
+          </article>
+        ))}
+      </div>
+      <div class="pricing__foot">
+        <p class="prose">Ask about 0% financing for up to 24 months.</p>
         <a class="button" href="/appointment-request?interest=Dental%20Implants">Request an appointment</a>
       </div>
     </div>
@@ -38,19 +55,33 @@ import ProcedureCard from "@/components/ProcedureCard.astro";
 </BaseLayout>
 
 <style>
-  .hero { position: relative; isolate: isolate; overflow: hidden; min-height: 48rem; background: var(--ink); color: var(--white); }
-  .hero__video, .hero__veil { position: absolute; inset: 0; z-index: -2; height: 100%; width: 100%; object-fit: cover; }
-  .hero__veil { z-index: -1; background: linear-gradient(90deg, rgba(3,28,45,.91) 0%, rgba(3,28,45,.68) 52%, rgba(3,28,45,.34) 100%); }
+  .hero { position: relative; isolation: isolate; overflow: hidden; min-height: 48rem; background: var(--ink); color: var(--white); }
+  .hero__media, .hero__veil { position: absolute; inset: 0; z-index: -2; height: 100%; width: 100%; object-fit: cover; }
+  .hero__media { filter: saturate(.55); }
+  .hero__veil { z-index: -1; background: rgba(3,28,45,.86); }
   .hero__grid { display: grid; align-items: center; gap: 3rem; min-height: 48rem; padding-block: 5rem; }
+  .hero__kicker { margin: 0 0 1.25rem; color: var(--copper-light); font-size: clamp(1.1rem, 1.7vw, 1.45rem); font-weight: 700; line-height: 1.3; }
+  .hero__kicker strong { color: var(--white); }
   .hero__copy { max-width: 39rem; border-left: 1px solid var(--copper-light); color: rgba(255,255,255,.88); font-size: 1.1rem; line-height: 1.7; margin: 2.25rem 0; padding-left: 1.25rem; }
   .hero__offer { border-left: 2px solid var(--copper); font-size: .9rem; line-height: 1.55; margin-top: 1.5rem; max-width: 33rem; padding: 1rem 1.15rem; background: rgba(3,28,45,.54); }
   .hero__comparison { width: min(100%, 40rem); justify-self: end; }
   .hero__comparison .eyebrow { margin-bottom: .75rem; color: var(--copper-light); }
   .section { padding: 5rem 0; }
   .section--paper { background: var(--paper); }.section--rose { background: var(--rose); }.section--ink { background: var(--ink); color: var(--white); }
-  .implant-grid { display: grid; align-items: center; gap: 3rem; }.implant-grid figure { margin: 0; border: 1px solid var(--line); }.implant-grid img { aspect-ratio: 4/3; object-fit: cover; width: 100%; }.implant-grid .section-title { margin-top: .75rem; }.implant-grid .section-title em { color: var(--copper); font-style: normal; font-size: .42em; letter-spacing: 0; }
+  .pricing__title { margin-top: .75rem; max-width: 44rem; }.pricing__grid { display: grid; gap: 1.25rem; margin-top: 2.5rem; }
+  .price-card { display: flex; flex-direction: column; border: 1px solid var(--line); border-top: 4px solid var(--copper); padding: clamp(1.25rem, 2.5vw, 2rem); background: var(--white); }
+  .price-card img { width: 100%; max-width: 15rem; height: 10rem; margin: 0 auto 1.5rem; object-fit: contain; }
+  /* The single-implant art runs its gum line to the image edges; fade them so it floats like the other two. */
+  .price-card__fade { -webkit-mask-image: radial-gradient(closest-side, #000 62%, transparent); mask-image: radial-gradient(closest-side, #000 62%, transparent); }
+  .price-card__label { margin: 0; font-size: .78rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+  .price-card__price { margin: .6rem 0 0; font-family: var(--font-display); font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 600; letter-spacing: -.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+  .price-card__unit { margin: .45rem 0 0; padding-bottom: 1rem; border-bottom: 1px solid var(--line); color: var(--ink-soft); font-size: .72rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+  .price-card__copy { margin: 1rem 0 0; color: var(--ink-soft); line-height: 1.6; }
+  .pricing__foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem 2rem; margin-top: 2rem; }.pricing__foot .prose { margin: 0; }
   .doctor { align-items: center; }.doctor img { aspect-ratio: 4/5; width: 100%; object-fit: cover; }.doctor .button { margin-top: 1rem; }
   .cards { margin-top: 2rem; }.consult { display: flex; align-items: end; justify-content: space-between; gap: 1.5rem; }.consult .eyebrow { color: var(--copper-light); }.consult .section-title { max-width: 38rem; }
-  @media (min-width: 60rem) { .hero__grid { grid-template-columns: 1fr .9fr; }.implant-grid { grid-template-columns: 1fr .85fr; } }
+  /* Subgrid keeps each card's label, price, and copy on shared rows, so a label that wraps doesn't push its price out of line. */
+  @media (min-width: 46rem) { .pricing__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }.price-card { display: grid; grid-row: span 5; grid-template-rows: subgrid; row-gap: 0; } }
+  @media (min-width: 60rem) { .hero__grid { grid-template-columns: 1fr .9fr; }.hero__veil { background: linear-gradient(90deg, rgba(3,28,45,.94) 0%, rgba(3,28,45,.84) 50%, rgba(3,28,45,.7) 100%); } }
   @media (max-width: 42rem) { .hero { min-height: auto; }.hero__grid { min-height: auto; padding-block: 4rem; }.consult { align-items: start; flex-direction: column; } }
 </style>

@@ -13,7 +13,7 @@ const $$BeforeAfter = createComponent(($$result, $$props, $$slots) => {
     afterLabel = "After",
     alt = "Before and after dental treatment"
   } = Astro2.props;
-  return renderTemplate`${maybeRenderHead()}<div class="bas-container" data-bas${addAttribute(before, "data-before-image")}${addAttribute(after, "data-after-image")}${addAttribute(beforeLabel, "data-before-label")}${addAttribute(afterLabel, "data-after-label")} role="img"${addAttribute(alt, "aria-label")}></div> ${renderScript($$result, "/Users/whit/Documents/GitHub/laith-ashburn/src/components/BeforeAfter.astro?astro&type=script&index=0&lang.ts")} `;
-}, "/Users/whit/Documents/GitHub/laith-ashburn/src/components/BeforeAfter.astro", void 0);
+  return renderTemplate`${maybeRenderHead()}<div class="bas-container" data-bas${addAttribute(before, "data-before-image")}${addAttribute(after, "data-after-image")}${addAttribute(beforeLabel, "data-before-label")}${addAttribute(afterLabel, "data-after-label")} role="img"${addAttribute(alt, "aria-label")}></div> ${renderScript($$result, "/Users/whit/Documents/G I T H U B/laith-ashburn/src/components/BeforeAfter.astro?astro&type=script&index=0&lang.ts")} `;
+}, "/Users/whit/Documents/G I T H U B/laith-ashburn/src/components/BeforeAfter.astro", void 0);
 
 export { $$BeforeAfter as $ };

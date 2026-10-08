@@ -8,6 +8,6 @@ const $$ProcedureCard = createComponent(($$result, $$props, $$slots) => {
   Astro2.self = $$ProcedureCard;
   const { name, price, description, href, image } = Astro2.props;
   return renderTemplate`${maybeRenderHead()}<article class="procedure-card" data-astro-cid-fopqv5va> ${image && renderTemplate`<img${addAttribute(image, "src")} alt="" loading="lazy" data-astro-cid-fopqv5va>`} <div class="procedure-card__body" data-astro-cid-fopqv5va> <p class="eyebrow" data-astro-cid-fopqv5va>${price ? `From ${price}` : "Personalized care"}</p> <h3 data-astro-cid-fopqv5va>${name}</h3> <p data-astro-cid-fopqv5va>${description}</p> <a${addAttribute(href, "href")} data-astro-cid-fopqv5va>Explore ${name} <span aria-hidden="true" data-astro-cid-fopqv5va>↗</span></a> </div> </article> `;
-}, "/Users/whit/Documents/GitHub/laith-ashburn/src/components/ProcedureCard.astro", void 0);
+}, "/Users/whit/Documents/G I T H U B/laith-ashburn/src/components/ProcedureCard.astro", void 0);
 
 export { $$ProcedureCard as $ };
