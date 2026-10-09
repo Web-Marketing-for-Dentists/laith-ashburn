@@ -8,6 +8,13 @@ export const site = {
   address: "20925 Professional Plaza, Suite 330, Ashburn, VA 20147",
 };
 
+/* Google Business Profile rating. 279 reviews at 4.7 on 2026-10-09; the count is rounded down so it stays true as reviews arrive. */
+export const google = {
+  rating: "4.7",
+  reviewCount: "275+",
+  reviewsUrl: "https://www.google.com/search?q=My+Ashburn+Dentist+Ashburn+VA#lrd=0x89b63eed804411cb:0x41557ba9dcb37a61,1,,,,",
+};
+
 export const procedures = [
   { slug: "dental-implants", name: "Dental Implants", price: "$2,999", description: "A considered path to restoring a missing tooth with an implant, abutment, and crown." },
   { slug: "dental-crowns", name: "Dental Crowns", price: "$799", description: "Protect and restore a worn, damaged, or weakened tooth with a carefully made crown." },

@@ -1,0 +1,23 @@
+---
+/* Google's "Verified Customer Reviews" artwork with the rating beneath it. The numbers come from
+   `google` in utils/site so every badge on the site stays in step. Links to the on-page reviews
+   when given an anchor, otherwise to the Google profile. */
+import { google } from "@/utils/site";
+
+interface Props { href?: string; }
+const { href = google.reviewsUrl } = Astro.props;
+const external = !href.startsWith("#") && !href.startsWith("/");
+---
+<a class="google-rating" href={href} target={external ? "_blank" : undefined} rel={external ? "noreferrer" : undefined}>
+  <img src="/assets/images/google-verified-reviews.webp" alt="Google Verified Customer Reviews" width="800" height="499" loading="lazy" decoding="async" />
+  <span class="google-rating__score">Google Rating <strong>{google.rating}</strong><span class="google-rating__rule" aria-hidden="true">|</span><strong>{google.reviewCount}</strong> Reviews</span>
+</a>
+
+<style>
+  .google-rating { display: inline-flex; flex-direction: column; align-items: center; gap: .35rem; padding: .75rem 1.1rem .95rem; background: var(--white); border: 1px solid var(--line); border-top: 4px solid var(--copper); color: var(--ink); text-decoration: none; transition: transform 160ms ease, box-shadow 160ms ease; }
+  .google-rating:hover { transform: translateY(-2px); box-shadow: 0 .75rem 1.5rem rgba(6,43,67,.14); }
+  .google-rating img { width: 10.5rem; height: auto; }
+  .google-rating__score { color: var(--ink-soft); font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
+  .google-rating__score strong { color: var(--ink); font-size: .95rem; font-weight: 900; letter-spacing: .02em; }
+  .google-rating__rule { margin-inline: .55rem; color: var(--copper); }
+</style>

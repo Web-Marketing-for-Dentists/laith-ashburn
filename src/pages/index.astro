@@ -2,6 +2,9 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import BeforeAfter from "@/components/BeforeAfter.astro";
 import ProcedureCard from "@/components/ProcedureCard.astro";
+import GoogleRating from "@/components/GoogleRating.astro";
+import Reviews from "@/components/Reviews.astro";
+import { reviews } from "@/utils/reviews";
 
 const tiers = [
   { label: "Single Dental Implant", price: "$2,999", unit: "per tooth", copy: "Replaces one missing tooth. Includes implant, abutment, and crown.", image: "/assets/images/single-implant.webp", alt: "Illustration of a single dental implant with its abutment and crown", width: 655, height: 438, fade: true },
@@ -20,6 +23,7 @@ const tiers = [
         <p class="hero__copy">My Ashburn Dentist&nbsp;– located at Ashburn Farm &amp; Claiborne Pkwys&nbsp;– offers a comfortable dental experience to receive expert care in tooth replacement. With single dental implants just $2,999, schedule a FREE consultation to discover if we could save you money!</p>
         <a class="button" href="/appointment-request?interest=Dental%20Implants">Request an appointment <span aria-hidden="true">↗</span></a>
         <p class="hero__offer"><strong>Free</strong> Exam, X-Ray, and Consultation ($199 Value). Hurry! The offer ends soon.</p>
+        <div class="hero__rating"><GoogleRating href="#reviews" /></div>
       </div>
       <div class="hero__comparison"><p class="eyebrow">Implant patient of Dr. Rusznak</p><BeforeAfter /></div>
     </div>
@@ -51,6 +55,7 @@ const tiers = [
     </div>
   </section>
   <section class="section section--paper"><div class="shell"><p class="eyebrow">More ways to care for your smile</p><h2 class="section-title">General dentistry</h2><div class="grid grid--three cards"><ProcedureCard name="Dental Crowns" price="$799" description="Restore strength and function with a crown made for your smile." href="/general/dental-crowns" image="/assets/images/dental-crowns.webp" /><ProcedureCard name="Wisdom Tooth Extractions" price="$299" description="Straightforward guidance for wisdom teeth that need care." href="/general/wisdom-tooth-extractions" image="/assets/images/wisdom-tooth.webp" /><ProcedureCard name="Root Canal Treatment" price="$699" description="Focused treatment to relieve pain and preserve your natural tooth." href="/root-canal" image="/assets/images/root-canal.webp" /></div></div></section>
+  <Reviews reviews={reviews} heading="Read Reviews from Our Patients" lead="What patients say about Dr. Rusznak and our Ashburn team on Google, quoted as published." />
   <section class="section section--ink"><div class="shell consult"><div><p class="eyebrow">Ready when you are</p><h2 class="section-title">Let’s talk about your options.</h2></div><a class="button" href="/appointment-request">Request an appointment</a></div></section>
 </BaseLayout>
 
@@ -64,6 +69,7 @@ const tiers = [
   .hero__kicker strong { color: var(--white); }
   .hero__copy { max-width: 39rem; border-left: 1px solid var(--copper-light); color: rgba(255,255,255,.88); font-size: 1.1rem; line-height: 1.7; margin: 2.25rem 0; padding-left: 1.25rem; }
   .hero__offer { border-left: 2px solid var(--copper); font-size: .9rem; line-height: 1.55; margin-top: 1.5rem; max-width: 33rem; padding: 1rem 1.15rem; background: rgba(3,28,45,.54); }
+  .hero__rating { margin-top: 1.5rem; }
   .hero__comparison { width: min(100%, 40rem); justify-self: end; }
   .hero__comparison .eyebrow { margin-bottom: .75rem; color: var(--copper-light); }
   .section { padding: 5rem 0; }

@@ -11,6 +11,11 @@ const site = {
   phoneHref: "tel:+15712485413",
   address: "20925 Professional Plaza, Suite 330, Ashburn, VA 20147"
 };
+const google = {
+  rating: "4.7",
+  reviewCount: "275+",
+  reviewsUrl: "https://www.google.com/search?q=My+Ashburn+Dentist+Ashburn+VA#lrd=0x89b63eed804411cb:0x41557ba9dcb37a61,1,,,,"
+};
 const procedures = [
   { slug: "dental-implants", name: "Dental Implants", price: "$2,999", description: "A considered path to restoring a missing tooth with an implant, abutment, and crown." },
   { slug: "dental-crowns", name: "Dental Crowns", price: "$799", description: "Protect and restore a worn, damaged, or weakened tooth with a carefully made crown." },
@@ -126,4 +131,4 @@ const $$BaseLayout = createComponent(($$result, $$props, $$slots) => {
     </script><script type="application/ld+json">`, "</script>", '</head> <body> <a class="skip-link" href="#main">Skip to content</a> ', ' <main id="main">', "</main> ", " </body></html>"])), addAttribute(description, "content"), noIndex && renderTemplate`<meta name="robots" content="noindex,nofollow">`, addAttribute(title, "content"), addAttribute(description, "content"), addAttribute(`${site.url}/assets/images/clinic-fallback.jpg`, "content"), addAttribute(new URL(Astro2.url.pathname, site.url), "href"), title, addAttribute(whatConvertsSrc, "src"), addAttribute(`https://www.googletagmanager.com/gtag/js?id=${ga4}`, "src"), defineScriptVars({ ga4 }), unescapeHTML(JSON.stringify({ "@context": "https://schema.org", "@type": "Dentist", name: site.name, telephone: site.phoneDisplay, address: { "@type": "PostalAddress", streetAddress: "20925 Professional Plaza, Suite 330", addressLocality: "Ashburn", addressRegion: "VA", postalCode: "20147", addressCountry: "US" } })), renderHead(), renderComponent($$result, "Header", $$Header, {}), renderSlot($$result, $$slots["default"]), renderComponent($$result, "Footer", $$Footer, {}));
 }, "/Users/whit/Documents/G I T H U B/laith-ashburn/src/layouts/BaseLayout.astro", void 0);
 
-export { $$BaseLayout as $, procedures as a, procedureOptions as p, resolveProcedure as r, site as s };
+export { $$BaseLayout as $, procedures as a, google as g, procedureOptions as p, resolveProcedure as r, site as s };

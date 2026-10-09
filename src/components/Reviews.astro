@@ -1,0 +1,72 @@
+---
+import GoogleRating from "@/components/GoogleRating.astro";
+import { google } from "@/utils/site";
+import type { Review } from "@/utils/reviews";
+
+interface Props { reviews: readonly Review[]; eyebrow?: string; heading: string; lead?: string; id?: string; }
+const { reviews, eyebrow = "Verified Google reviews", heading, lead, id = "reviews" } = Astro.props;
+const star = "m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2Z";
+---
+<section class="reviews" id={id}>
+  <div class="shell">
+    <div class="reviews__head">
+      <div>
+        <p class="eyebrow">{eyebrow}</p>
+        <h2 class="section-title">{heading}</h2>
+        {lead && <p class="prose reviews__lead">{lead}</p>}
+      </div>
+      <GoogleRating />
+    </div>
+
+    <div class="reviews__grid">
+      {reviews.map((review) => (
+        <article class:list={["review", { "review--feature": review.feature }]}>
+          <div class="review__head">
+            <img class="review__photo" src={review.photo} alt="" width="48" height="48" loading="lazy" decoding="async" />
+            <div>
+              <p class="review__name">{review.name}</p>
+              <span class="review__stars" role="img" aria-label="Rated 5 out of 5 on Google">
+                {Array.from({ length: 5 }, () => <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d={star} /></svg>)}
+              </span>
+            </div>
+            <svg class="review__g" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+              <path fill="#4285F4" d="M23.5 12.3c0-.9-.1-1.5-.2-2.2H12v4.2h6.6c-.1 1.1-.8 2.7-2.4 3.8l3.7 2.9c2.2-2 3.6-5 3.6-8.7Z" />
+              <path fill="#34A853" d="M12 24c3.2 0 5.9-1.1 7.9-2.9l-3.7-2.9c-1 .7-2.4 1.2-4.2 1.2-3.3 0-6-2.2-7-5.2l-3.9 3C3.1 21.3 7.2 24 12 24Z" />
+              <path fill="#FBBC05" d="M5 14.2c-.3-.8-.4-1.5-.4-2.2s.1-1.5.4-2.2L1 6.8C.4 8.4 0 10.1 0 12s.4 3.6 1 5.2l4-3Z" />
+              <path fill="#EA4335" d="M12 4.7c2.3 0 3.9 1 4.8 1.9l3.5-3.4C18.2 1.2 15.5 0 12 0 7.2 0 3.1 2.7 1 6.8l4 3c1-3 3.7-5.1 7-5.1Z" />
+            </svg>
+          </div>
+          <p class="review__text">{review.text}</p>
+        </article>
+      ))}
+    </div>
+
+    <div class="reviews__foot">
+      <a class="button button--outline" href={google.reviewsUrl} target="_blank" rel="noreferrer">Read all {google.reviewCount} reviews on Google <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .reviews { background: var(--rose-soft); padding: 5rem 0; }
+  .reviews__head { display: grid; gap: 2rem; margin-bottom: 2.5rem; }
+  .reviews__head .section-title { margin-top: .75rem; max-width: 40rem; }
+  .reviews__head > :global(.google-rating) { justify-self: start; }
+  .reviews__lead { margin: 1.25rem 0 0; }
+  /* Columns rather than a grid: every card keeps its natural height, which suits reviews of very uneven length. */
+  .reviews__grid { column-gap: 1.25rem; }
+  .review { break-inside: avoid; margin: 0 0 1.25rem; border: 1px solid var(--line); border-top: 4px solid var(--copper); padding: clamp(1.25rem, 2.5vw, 1.75rem); background: var(--white); }
+  .review__head { display: flex; align-items: center; gap: .85rem; margin-bottom: 1rem; }
+  .review__photo { flex: none; width: 3rem; height: 3rem; border-radius: 50%; object-fit: cover; }
+  .review__name { margin: 0 0 .25rem; font-weight: 700; line-height: 1.2; }
+  .review__stars { display: flex; gap: 2px; color: var(--star); }
+  .review__stars svg { fill: currentColor; }
+  .review__g { flex: none; align-self: flex-start; margin-left: auto; }
+  .review__text { margin: 0; color: var(--ink-soft); line-height: 1.65; }
+  .review--feature { border-color: var(--ink); border-top-color: var(--copper); background: var(--ink); color: var(--white); }
+  .review--feature .review__photo { box-shadow: 0 0 0 2px var(--copper-light); }
+  .review--feature .review__text { color: rgba(255,255,255,.88); font-size: 1.08rem; }
+  .reviews__foot { display: flex; justify-content: center; margin-top: 1.25rem; }
+  @media (min-width: 46rem) { .reviews__grid { columns: 2; } }
+  @media (min-width: 62rem) { .reviews__head { grid-template-columns: minmax(0, 1fr) auto; align-items: end; }.reviews__head > :global(.google-rating) { justify-self: end; }.reviews__grid { columns: 3; } }
+</style>
