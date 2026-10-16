@@ -22,7 +22,9 @@ const star = "m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14
       {reviews.map((review) => (
         <article class:list={["review", { "review--feature": review.feature }]}>
           <div class="review__head">
-            <img class="review__photo" src={review.photo} alt="" width="48" height="48" loading="lazy" decoding="async" />
+            {review.photo
+              ? <img class="review__photo" src={review.photo} alt="" width="48" height="48" loading="lazy" decoding="async" />
+              : <span class="review__photo review__photo--initial" aria-hidden="true">{review.name.charAt(0)}</span>}
             <div>
               <p class="review__name">{review.name}</p>
               <span class="review__stars" role="img" aria-label="Rated 5 out of 5 on Google">
@@ -58,6 +60,7 @@ const star = "m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14
   .review { break-inside: avoid; margin: 0 0 1.25rem; border: 1px solid var(--line); border-top: 4px solid var(--copper); padding: clamp(1.25rem, 2.5vw, 1.75rem); background: var(--white); }
   .review__head { display: flex; align-items: center; gap: .85rem; margin-bottom: 1rem; }
   .review__photo { flex: none; width: 3rem; height: 3rem; border-radius: 50%; object-fit: cover; }
+  .review__photo--initial { display: grid; place-items: center; background: var(--copper); color: var(--white); font-weight: 700; font-size: 1.25rem; }
   .review__name { margin: 0 0 .25rem; font-weight: 700; line-height: 1.2; }
   .review__stars { display: flex; gap: 2px; color: var(--star); }
   .review__stars svg { fill: currentColor; }

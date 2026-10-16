@@ -1,10 +1,11 @@
-/* Five-star Google reviews of My Ashburn Dentist, quoted as published. Only reviewers whose Google
-   profile picture is a photo of themselves are included; last names are cut to an initial. Photos are
-   local copies in /assets/images/reviews/. `feature` promotes one card to the dark treatment. */
+/* Five-star Google reviews of My Ashburn Dentist, quoted as published; last names are cut to an
+   initial. Photos are local copies of the reviewer's Google profile picture in /assets/images/reviews/;
+   a review without one shows the reviewer's initial instead. `feature` promotes one card to the dark
+   treatment. */
 
 export interface Review {
   name: string;
-  photo: string;
+  photo?: string;
   text: string;
   feature?: boolean;
 }
@@ -15,6 +16,10 @@ export const reviews: readonly Review[] = [
     photo: "/assets/images/reviews/kavone-b.webp",
     text: "The Dr. is an artist. I was able to get a root canal done the same day, on a tooth that had previous work done, that left it looking terrible- he was able to complete rebuild it, to look completely realistic; while still opting out of getting a crown. I had a root canal done a few months ago, from an endodontist specialist; and Dr. Rusnak blew their work out of the water. 10/10 results.",
     feature: true,
+  },
+  {
+    name: "Deborah S.",
+    text: "I'm not a person who enjoys going to the dentist. Quite the contrary. I'm terrified. But \"My Ashburn Dentist\" has changed that for me. They've replaced my fear with a calm I didn't know that I would ever have. Don't get me wrong, I don't go skipping to their office, but the fear, the dread has been alleviated. Dr. Rusznak has done wonders to calm my fears. He works at MY pace. I never feel rushed into having work done that I am not ready for. The office staff are wonderful. Deborah is amazing. Always making sure my insurance pays the maximum so my out of pocket charges are as low as possible. If you're like me, not a lover of going to the dentist, give \"My Ashburn Dentist\" a try. You won't be sorry. And going sooner than later may save you the need forva lot of dental work in the future.",
   },
   {
     name: "Karen R.",
